@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import nocache from 'nocache';
 import express from 'express';
+import bodyParser from 'body-parser';
 import healthz from './routes/healthz/route';
 import apidocs from './routes/apidocs/route';
 import notFound from './routes/middlewares/notFound';
@@ -12,6 +13,7 @@ import v1Routes from './routes/v1';
 
 const app = express();
 
+app.use(bodyParser.json({ limit: '5120kb' }));
 app.use(nocache());
 app.use(helmet());
 app.use(compression());
@@ -20,7 +22,7 @@ app.use(httpLogger);
 
 app.use('/', v1Routes);
 
-app.use(healthz);
+app.use(healthz(app));
 app.use(apidocs);
 app.use(notFound);
 app.use(error);

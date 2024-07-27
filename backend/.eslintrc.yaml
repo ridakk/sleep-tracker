@@ -14,6 +14,9 @@ extends:
 
 parser: '@typescript-eslint/parser'
 
+env:
+  jest: true
+
 rules:
   complexity:
     - warn
@@ -24,3 +27,4 @@ rules:
     - ignorePackages
     - js: never
       ts: never
+  '@typescript-eslint/no-var-requires': warn

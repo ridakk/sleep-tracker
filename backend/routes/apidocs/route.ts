@@ -6,6 +6,7 @@ import yaml from 'js-yaml';
 import swaggerJSDoc from 'swagger-jsdoc';
 
 import swaggerUi from 'swagger-ui-express';
+import { merge } from 'lodash';
 import packageJson from '../../package.json';
 
 const swaggerDefinition = {
@@ -28,7 +29,7 @@ const options = {
 };
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format
-let swaggerSpec = swaggerJSDoc(options);
+const swaggerSpec = swaggerJSDoc(options);
 
 // as we have both yaml and jsdoc definitions
 // read all yaml definitions and merge it to spec from swagger-jsdoc module
@@ -36,12 +37,9 @@ const filenames: string[] = fs.readdirSync(path.resolve(__dirname, '..', 'swagge
 
 [
   ...filenames.map((filename) => path.resolve(__dirname, '..', 'swagger', filename)),
-  path.resolve(__dirname, '..', 'routes', 'v1', 'sleeps', 'swagger.yaml'),
+  path.resolve(__dirname, '..', 'v1', 'sleeps', 'swagger.yaml'),
 ].forEach((filename) => {
-  swaggerSpec = {
-    ...swaggerSpec,
-    ...(yaml.load(fs.readFileSync(filename, 'utf8')) as object),
-  };
+  merge(swaggerSpec, yaml.load(fs.readFileSync(filename, 'utf8')));
 });
 
 const router = Router();

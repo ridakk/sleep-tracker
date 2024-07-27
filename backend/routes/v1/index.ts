@@ -3,6 +3,6 @@ import SleepRoute from './sleeps/route';
 
 const router = Router();
 
-router.use('/v1/sleeps', SleepRoute);
+router.use('/v1', SleepRoute);
 
 export default router;

@@ -5,6 +5,7 @@ export interface TypeSleepCreate {
   name: string;
   gender: string;
   duration: number;
+  date: Date;
 }
 
 export interface TypeSleep extends TypeSleepCreate {
@@ -33,10 +34,14 @@ Sleep.init(
       allowNull: false,
       type: DataTypes.INTEGER,
     },
+    date: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
   },
   {
     defaultScope: {
-      attributes: { exclude: ['updatedAt', 'deletedAt'] },
+      attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
     },
     sequelize,
     tableName: 'sleep',

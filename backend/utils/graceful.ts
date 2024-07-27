@@ -2,8 +2,8 @@ import config from 'config';
 import { Nexit, NEXIT_SHUTDOWN, NEXIT_EXIT } from 'nexit';
 import logger from './logger/logger';
 
-const shutdownDelay = config.get('next.shutdownDelay') as string;
-const exitDelay = config.get('next.exitDelay') as string;
+const shutdownDelay = config.get('nexit.shutdownDelay') as string;
+const exitDelay = config.get('nexit.exitDelay') as string;
 
 const nexit = new Nexit({
   shutdownDelay: parseInt(shutdownDelay, 10),

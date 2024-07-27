@@ -1,1 +1,5 @@
 ---
+logger:
+  level: silent
+sequelize:
+  port: 10001

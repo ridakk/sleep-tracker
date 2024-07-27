@@ -9,7 +9,7 @@ const router = Router();
 /**
  * @swagger
  *
- * /sleeps:
+ * /v1/sleeps:
  *   post:
  *     summary: create a sleep entry
  *     tags:
