@@ -1,0 +1,27 @@
+---
+port: 8000
+nexit:
+  shutdownDelay: 0
+  exitDelay: 0
+logger:
+  level: trace
+  prettyPrint: true
+  timestamp: true
+sequelize:
+  dialect: postgres
+  database: postgres
+  host: localhost
+  port: 5432
+  benchmark: false
+  logging: false
+  migrationStorage: sequelize
+  seederStorage: sequelize
+  define:
+    underscored: true
+  minifyAliases: true # avoid Postgres alias character limit of 64
+  pool:
+    max: 5
+    min: 0
+    acquire: 60000
+    idle: 10000
+    evict: 1000

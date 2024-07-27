@@ -1,0 +1,16 @@
+---
+port: PORT
+nexit:
+  shutdownDelay: SHUT_DOWN_DELAY
+  exitDelay: EXIT_DELAY
+logger:
+  level: LOGGER_LEVEL
+sequelize:
+  uri: POSTGRES_CONNECTION_URI
+  username: POSTGRES_USER
+  password: POSTGRES_PASSWORD
+  database: POSTGRES_DB
+  host: POSTGRES_HOST
+  port: POSTGRES_PORT
+  logging: POSTGRES_LOGGING
+

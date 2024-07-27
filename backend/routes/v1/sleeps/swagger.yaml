@@ -1,0 +1,27 @@
+---
+components:
+  requestBodies:
+    Sleep:
+      $ref: '#/components/schemas/Sleep'
+  schemas:
+    SleepResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessStatusCode'
+        - type: object
+          properties:
+            result:
+              $ref: '#/components/schemas/Sleep'
+    Sleep:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        gender:
+          type: string
+        duration:
+          type: integer
+          min: 0
+          max: 24

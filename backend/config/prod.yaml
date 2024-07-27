@@ -1,0 +1,8 @@
+---
+logger:
+  level: trace
+  prettyPrint: false
+  timestamp: false
+nexit:
+  shutdownDelay: 30000
+  exitDelay: 400
