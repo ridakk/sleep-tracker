@@ -1,0 +1,33 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to backend",
+      "type": "node",
+      "request": "attach",
+      "port": 9001,
+      "restart": true,
+      "smartStep": true
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest Current File",
+      "cwd": "${workspaceFolder}/backend/",
+      "runtimeExecutable": "${workspaceFolder}/backend/node_modules/.bin/ts-node-dev",
+      "runtimeArgs": ["--transpile-only"],
+      "program": "${workspaceFolder}/backend/node_modules/.bin/jest",
+      "args": ["${file}", "--verbose"],
+      "console": "integratedTerminal",
+      "smartStep": true,
+      "env": {
+        "TZ": "UTC",
+        "NODE_ENV": "test",
+        "ALLOW_CONFIG_MUTATIONS": "true"
+      }
+    },
+  ]
+}
