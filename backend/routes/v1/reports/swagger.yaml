@@ -1,5 +1,12 @@
 ---
 components:
+  parameters:
+    NameQueryParam:
+      name: name
+      in: query
+      schema:
+        type: string
+      description: name of the user
   schemas:
     SleepWeeklyDurationResponse:
       allOf:

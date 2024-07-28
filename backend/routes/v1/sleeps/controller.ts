@@ -5,6 +5,5 @@ const createSleepEntry = (req: Request) => {
   return sleepService.createSleepEntry(req.body);
 };
 
-const getByName = () => {};
-
-export { createSleepEntry, getByName };
+// eslint-disable-next-line import/prefer-default-export
+export { createSleepEntry };

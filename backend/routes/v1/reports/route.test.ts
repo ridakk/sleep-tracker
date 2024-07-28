@@ -75,8 +75,8 @@ describe('v1.reports.test', () => {
       );
     });
 
-    it('returns entry counts per user', async () => {
-      const result = await request(app).get('/v1/reports/weekly').set('Accept', 'application/json');
+    it('returns entry counts for user 1', async () => {
+      const result = await request(app).get(`/v1/reports/weekly?name=${username1}`).set('Accept', 'application/json');
 
       expect(result.status).toEqual(200);
       expect(result.body.result).toEqual(
@@ -96,11 +96,6 @@ describe('v1.reports.test', () => {
             date: format(sub(startOfCurrentDay, { days: 6 }), 'yyyy-MM-dd'),
             sum: 5,
           }),
-          expect.objectContaining({
-            name: username2,
-            date: format(startOfCurrentDay, 'yyyy-MM-dd'),
-            sum: 8,
-          }),
         ]),
       );
 
@@ -112,6 +107,19 @@ describe('v1.reports.test', () => {
           }),
         ]),
       );
+    });
+
+    it('returns entry counts for user 2', async () => {
+      const result = await request(app).get(`/v1/reports/weekly?name=${username2}`).set('Accept', 'application/json');
+
+      expect(result.status).toEqual(200);
+      expect(result.body.result).toEqual([
+        expect.objectContaining({
+          name: username2,
+          date: format(startOfCurrentDay, 'yyyy-MM-dd'),
+          sum: 8,
+        }),
+      ]);
     });
   });
 });

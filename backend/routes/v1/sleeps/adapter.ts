@@ -13,7 +13,9 @@ const create = async (data: TypeSleepCreate): Promise<TypeSleep> => {
   return JSON.parse(JSON.stringify(result));
 };
 
-const getSleepDurationOfLastSevenDays = (): Promise<
+const getSleepDurationOfLastSevenDays = (
+  name: string,
+): Promise<
   {
     name: TypeSleepName;
     date: TypeSleepDate;
@@ -22,7 +24,7 @@ const getSleepDurationOfLastSevenDays = (): Promise<
 > => {
   const query = `
     SELECT s.name, s.date, sum(s.duration)::int FROM sleep s 
-    WHERE s.date > current_date - INTERVAL '7 days'
+    WHERE s.name = '${name.toLowerCase()}' AND s.date > current_date - INTERVAL '7 days'
     GROUP BY s."date", s."name"
   `;
 
@@ -36,8 +38,8 @@ const getEntryCountsPerName = (): Promise<
   }[]
 > => {
   const query = `
-    SELECT s.name, Count(*)::int FROM sleep s
-    GROUP BY s."name"
+    SELECT s.name, s.gender, Count(*)::int FROM sleep s
+    GROUP BY s."name", s.gender
   `;
 
   return sequelize.query(query, { type: QueryTypes.SELECT });

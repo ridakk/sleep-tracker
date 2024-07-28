@@ -1,7 +1,8 @@
+import { Request } from 'express';
 import * as sleepService from './service';
 
-const getSleepDurationOfLastSevenDays = () => {
-  return sleepService.getSleepDurationOfLastSevenDays();
+const getSleepDurationOfLastSevenDays = (req: Request) => {
+  return sleepService.getSleepDurationOfLastSevenDays((req.query.name as string) || '');
 };
 
 const getEntryCountsPerName = () => {

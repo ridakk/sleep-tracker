@@ -12,6 +12,8 @@ const router = Router();
  *     summary: get sleep durations for last 7 days
  *     tags:
  *       - reports
+ *     parameters:
+ *       - $ref: '#/components/parameters/NameQueryParam'
  *     responses:
  *       200:
  *         description: successful operation
