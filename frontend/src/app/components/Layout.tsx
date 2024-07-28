@@ -12,7 +12,6 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import LeftMenuItems from './LeftMenuItem';
@@ -127,10 +126,9 @@ export default function Layout({
           overflow: 'auto',
         }}
       >
+        <Toolbar />
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Grid container spacing={3}>
-            {children}
-          </Grid>
+          {children}
           <Copyright sx={{ pt: 4 }} />
         </Container>
       </Box>
