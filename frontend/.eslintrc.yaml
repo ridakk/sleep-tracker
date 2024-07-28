@@ -1,0 +1,10 @@
+---
+extends:
+  - eslint:recommended
+  - plugin:prettier/recommended
+  - plugin:import/recommended
+  - next
+  - next/core-web-vitals
+
+globals:
+  React: true
