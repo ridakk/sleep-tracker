@@ -1,0 +1,33 @@
+---
+components:
+  schemas:
+    SleepWeeklyDurationResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessStatusCode'
+        - type: object
+          properties:
+            result:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  date:
+                    type: date
+                  sum:
+                    type: integer
+    SleepCountResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessStatusCode'
+        - type: object
+          properties:
+            result:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  count:
+                    type: integer

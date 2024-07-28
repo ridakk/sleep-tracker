@@ -1,11 +1,14 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../../../sequelize/sequelize';
 
+export type TypeSleepName = string;
+export type TypeSleepDate = Date;
+
 export interface TypeSleepCreate {
-  name: string;
+  name: TypeSleepName;
   gender: string;
   duration: number;
-  date: Date;
+  date: TypeSleepDate;
 }
 
 export interface TypeSleep extends TypeSleepCreate {
@@ -36,17 +39,22 @@ Sleep.init(
     },
     date: {
       allowNull: false,
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
     },
   },
   {
-    defaultScope: {
-      attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
-    },
+    indexes: [
+      {
+        fields: ['name'],
+      },
+      {
+        fields: ['name', 'date'],
+      },
+    ],
     sequelize,
     tableName: 'sleep',
     modelName: 'sleep',
-    paranoid: true,
+    paranoid: false,
   },
 );
 

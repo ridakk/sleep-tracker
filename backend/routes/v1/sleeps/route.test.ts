@@ -4,7 +4,7 @@ import request from 'supertest';
 import { faker } from '@faker-js/faker';
 import app from '../../../application';
 
-describe('sleeps.post.test', () => {
+describe('v1.sleeps.test', () => {
   beforeAll(() => {});
   describe('post /v1/sleeps', () => {
     it('returns 400 with all validation failures', async () => {
@@ -20,7 +20,7 @@ describe('sleeps.post.test', () => {
     it('returns 200 ok if all validations are correct', async () => {
       const result = await request(app).post('/v1/sleeps').set('Accept', 'application/json').send({
         name: faker.person.fullName().toLowerCase(),
-        gender: 'male,',
+        gender: faker.person.gender(),
         duration: 10,
       });
 

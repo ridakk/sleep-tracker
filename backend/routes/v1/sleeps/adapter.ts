@@ -1,6 +1,8 @@
-import SleepModel, { TypeSleep, TypeSleepCreate } from './model';
+import { QueryTypes } from 'sequelize';
+import SleepModel, { TypeSleep, TypeSleepCreate, TypeSleepDate, TypeSleepName } from './model';
+import sequelize from '../../../sequelize/sequelize';
 
-async function create(data: TypeSleepCreate): Promise<TypeSleep> {
+const create = async (data: TypeSleepCreate): Promise<TypeSleep> => {
   const result = await SleepModel.create({
     name: data.name.toLowerCase(),
     gender: data.gender.toLowerCase(),
@@ -9,7 +11,36 @@ async function create(data: TypeSleepCreate): Promise<TypeSleep> {
   });
 
   return JSON.parse(JSON.stringify(result));
-}
+};
 
-// eslint-disable-next-line import/prefer-default-export
-export { create };
+const getSleepDurationOfLastSevenDays = (): Promise<
+  {
+    name: TypeSleepName;
+    date: TypeSleepDate;
+    sum: number;
+  }[]
+> => {
+  const query = `
+    SELECT s.name, s.date, sum(s.duration)::int FROM sleep s 
+    WHERE s.date > current_date - INTERVAL '7 days'
+    GROUP BY s."date", s."name"
+  `;
+
+  return sequelize.query(query, { type: QueryTypes.SELECT });
+};
+
+const getEntryCountsPerName = (): Promise<
+  {
+    name: TypeSleepName;
+    count: number;
+  }[]
+> => {
+  const query = `
+    SELECT s.name, Count(*)::int FROM sleep s
+    GROUP BY s."name"
+  `;
+
+  return sequelize.query(query, { type: QueryTypes.SELECT });
+};
+
+export { create, getSleepDurationOfLastSevenDays, getEntryCountsPerName };

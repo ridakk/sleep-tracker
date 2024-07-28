@@ -38,6 +38,7 @@ const filenames: string[] = fs.readdirSync(path.resolve(__dirname, '..', 'swagge
 [
   ...filenames.map((filename) => path.resolve(__dirname, '..', 'swagger', filename)),
   path.resolve(__dirname, '..', 'v1', 'sleeps', 'swagger.yaml'),
+  path.resolve(__dirname, '..', 'v1', 'reports', 'swagger.yaml'),
 ].forEach((filename) => {
   merge(swaggerSpec, yaml.load(fs.readFileSync(filename, 'utf8')));
 });
