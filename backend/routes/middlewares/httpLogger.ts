@@ -5,7 +5,7 @@ export default pinoHttp({
   logger,
   autoLogging: {
     ignore: (req) => {
-      if (req.url?.match(/^\/(apidocs|healthz).*/)) {
+      if (req.url?.match(/^\/(api-docs|healthz).*/)) {
         return true;
       }
 

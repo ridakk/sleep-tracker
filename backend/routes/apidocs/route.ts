@@ -25,7 +25,7 @@ const options = {
   swaggerDefinition,
   // Path to the API docs
   // Note that this path is relative to the current directory = require(which the Node.js is ran, not the application itself.
-  apis: ['**/route.ts', '**/enum.ts'],
+  apis: ['**/route.ts', '**/route.js'],
 };
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format

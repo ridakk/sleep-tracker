@@ -28,7 +28,7 @@ export default function NewEntryForm() {
   };
 
   const handleGenderChange = (event: ChangeEvent<HTMLInputElement>) => {
-    getGender(event.target.value);
+    getGender(event.target.value.toLowerCase());
   };
 
   const handleDurationChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -104,6 +104,7 @@ export default function NewEntryForm() {
           placeholder=""
           autoComplete="gender"
           required
+          helperText="min 1 char, all lowercase"
           onChange={handleGenderChange}
         />
       </FormGrid>

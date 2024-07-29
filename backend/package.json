@@ -4,6 +4,8 @@
   "description": "sleep tracker backend",
   "scripts": {
     "cm": "git-cz",
+    "build:clean": "rimraf dist",
+    "build": "npm run build:clean && tsc && sh ./copy-assets.sh",
     "dev": "NODE_ENV=development TZ=UTC PORT=8000 ts-node-dev --respawn --transpile-only --inspect=${DEBUG_PORT:-9001} ./server.ts",
     "lint": "tsc --noEmit && eslint '**/*.ts' --quiet",
     "test": "./__tests__/run.sh test:dev_test",

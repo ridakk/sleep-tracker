@@ -6,7 +6,6 @@ nexit:
 logger:
   level: LOGGER_LEVEL
 sequelize:
-  uri: POSTGRES_CONNECTION_URI
   username: POSTGRES_USER
   password: POSTGRES_PASSWORD
   database: POSTGRES_DB
