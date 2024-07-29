@@ -23,10 +23,24 @@ export default function BasicBarChart({ username }: { username: string }) {
     }
 
     setOptions({
+      tooltip: {
+        trigger: 'axis',
+      },
       xAxis: {
         data: data.map((item) => item.date),
+        axisTick: {
+          alignWithLabel: true,
+        },
+        axisLabel: {
+          rotate: 30,
+        },
       },
-      yAxis: {},
+      yAxis: {
+        axisLabel: {
+          formatter: '{value} hours',
+          align: 'right',
+        },
+      },
       series: [
         {
           type: 'bar',

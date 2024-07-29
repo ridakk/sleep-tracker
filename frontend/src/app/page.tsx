@@ -3,6 +3,7 @@ import RootLayout from './components/Layout';
 import Title from './components/Title';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import NewEntryForm from './components/NewEntryForm';
 
 export default function Dashboard() {
   return (
@@ -14,10 +15,11 @@ export default function Dashboard() {
               p: 2,
               display: 'flex',
               flexDirection: 'column',
-              height: 240,
+              height: 'auto',
             }}
           >
-            <Title>Form</Title>
+            <Title>Enter new sleep data</Title>
+            <NewEntryForm />
           </Paper>
         </Grid>
       </Grid>
