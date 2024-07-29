@@ -13,6 +13,34 @@ const create = async (data: TypeSleepCreate): Promise<TypeSleep> => {
   return JSON.parse(JSON.stringify(result));
 };
 
+const findOneByName = async (name: TypeSleepName): Promise<TypeSleep> => {
+  const result = await SleepModel.findOne({
+    where: {
+      name: name.toLowerCase(),
+    },
+  });
+
+  return JSON.parse(JSON.stringify(result));
+};
+
+const getSleepDurationOfUserForCurrentDay = (
+  name: string,
+): Promise<
+  {
+    name: TypeSleepName;
+    date: TypeSleepDate;
+    sum: number;
+  }[]
+> => {
+  const query = `
+    SELECT s.name, s.date, sum(s.duration)::int FROM sleep s 
+    WHERE s.name = ${sequelize.escape(name.toLowerCase())} AND s.date = current_date
+    GROUP BY s."date", s."name"
+  `;
+
+  return sequelize.query(query, { type: QueryTypes.SELECT });
+};
+
 const getSleepDurationOfLastSevenDays = (
   name: string,
 ): Promise<
@@ -24,7 +52,7 @@ const getSleepDurationOfLastSevenDays = (
 > => {
   const query = `
     SELECT s.name, s.date, sum(s.duration)::int FROM sleep s 
-    WHERE s.name = '${name.toLowerCase()}' AND s.date > current_date - INTERVAL '7 days'
+    WHERE s.name = ${sequelize.escape(name.toLowerCase())} AND s.date > current_date - INTERVAL '7 days'
     GROUP BY s."date", s."name"
   `;
 
@@ -45,4 +73,10 @@ const getEntryCountsPerName = (): Promise<
   return sequelize.query(query, { type: QueryTypes.SELECT });
 };
 
-export { create, getSleepDurationOfLastSevenDays, getEntryCountsPerName };
+export {
+  create,
+  findOneByName,
+  getSleepDurationOfLastSevenDays,
+  getEntryCountsPerName,
+  getSleepDurationOfUserForCurrentDay,
+};

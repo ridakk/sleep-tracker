@@ -8,7 +8,7 @@ const sleepCreateValidator = [
     .escape(),
   body('gender', 'gender is required (lowercase), max:250')
     .isLowercase()
-    .isLength({ min: 3, max: 250 })
+    .isLength({ min: 1, max: 250 })
     .trim()
     .escape(),
   body('duration', 'duration is required, min: 0, max: 24').isInt({ min: 0, max: 24 }),

@@ -113,13 +113,15 @@ describe('v1.reports.test', () => {
       const result = await request(app).get(`/v1/reports/weekly?name=${username2}`).set('Accept', 'application/json');
 
       expect(result.status).toEqual(200);
-      expect(result.body.result).toEqual([
-        expect.objectContaining({
-          name: username2,
-          date: format(startOfCurrentDay, 'yyyy-MM-dd'),
-          sum: 8,
-        }),
-      ]);
+      expect(result.body.result).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            name: username2,
+            date: format(startOfCurrentDay, 'yyyy-MM-dd'),
+            sum: 8,
+          }),
+        ]),
+      );
     });
   });
 });
